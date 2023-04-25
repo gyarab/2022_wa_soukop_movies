@@ -15,9 +15,19 @@ def director(request, id):
     return render(request, 'director.html', context)
 
 def movies(request):
+    movies_querryset = Movie.objects.all()
+    genre = request.GET.get('genre')
+    if genre:
+        movies_querryset = movies_querryset.filter(genres__name=genre)
+
+
     context = {
-        "movies": Movie.objects.all()
+        "movies": movies_querryset,
+        "genres": Genre.objects.all,
+        "genreChosen": genre
     }
+
+    print(request.GET.get('genre'))
     return render(request, 'movies.html', context)
 
 def movie(request, id):
@@ -47,4 +57,3 @@ def homepage(request):
         "genres": Genre.objects.all(),
     }
     return render(request, 'homepage.html', context)
-  

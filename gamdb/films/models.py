@@ -10,7 +10,7 @@ class Movie(models.Model):
     director = models.ForeignKey('Director', blank=True, null=True, on_delete=models.SET_NULL)
     genres = models.ManyToManyField('Genre', blank=True, null=True)
 
-    def __str__(self):
+    def str(self):
         return f"{self.name} ({self.year})"
 
     def genres_display(self):
@@ -25,14 +25,14 @@ class Comment(models.Model):
     text = models.TextField()
     rating = models.IntegerField()
     created_at = models.DateTimeField(auto_now_add=True)
-        
+
 
 class Director(models.Model):
     name = models.CharField(max_length=255)
     slug = models.SlugField()
     birth_year = models.IntegerField(blank=True, null=True)
-
-    def __str__(self):
+    photo_url = models.CharField(max_length=255, blank=True, null=True)
+    def str(self):
         return f"{self.name} ({self.birth_year})"
 
 
@@ -43,11 +43,10 @@ class Actor(models.Model):
     photo_url = models.CharField(max_length=255, blank=True, null=True)
     description = models.TextField(blank=True, null=True)
 
-    def __str__(self):
+    def str(self):
         return f"{self.name} ({self.birth_year})"
 
 class Genre(models.Model):
     name = models.CharField(max_length=255)
-
-    def __str__(self):
+    def str(self):
         return f"{self.name}"
