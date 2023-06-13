@@ -1,5 +1,7 @@
 from django.shortcuts import render
-from .models import Movie, Director, Actor, Genre
+from .models import Movie, Director, Actor, Genre, Comment
+from django.db.models import Q
+from .forms import CommentForm
 
 def directors(request):
     context = {
@@ -15,24 +17,46 @@ def director(request, id):
     return render(request, 'director.html', context)
 
 def movies(request):
-    movies_querryset = Movie.objects.all()
+    movies_queryset = Movie.objects.all()
     genre = request.GET.get('genre')
     if genre:
-        movies_querryset = movies_querryset.filter(genres__name=genre)
-
+        movies_queryset = movies_queryset.filter(genres__name=genre)
+    search = request.GET.get('search')
+    if search:
+        movies_queryset = movies_queryset.filter(Q(name__icontains=search)|Q(description__icontains=search)) 
 
     context = {
-        "movies": movies_querryset,
-        "genres": Genre.objects.all,
-        "genreChosen": genre
+        "movies": movies_queryset,
+        "genres": Genre.objects.all().order_by('name'),
+        "genre": genre,
+        "search": search,
     }
-
-    print(request.GET.get('genre'))
     return render(request, 'movies.html', context)
 
 def movie(request, id):
+    m = Movie.objects.get(id=id)
+    f = CommentForm()
+
+    if request.POST:
+        f = CommentForm(request.POST)
+        if f.is_valid():
+            # ulozit do DB
+            c = Comment(
+                movie=m,
+                author=f.cleaned_data.get('author'),
+                text=f.cleaned_data.get('text'),
+                rating=f.cleaned_data.get('rating'),
+            )
+            if not c.author:
+                c.author = 'Anonym'
+            c.save()
+            # nastavit prazdny form
+            f = CommentForm()
+
     context = {
-        "movie": Movie.objects.get(id=id)
+        "movie": m,
+        "comments": Comment.objects.filter(movie=m).order_by('-created_at'),
+        "form": f
     }
     return render(request, 'movie.html', context)
 
@@ -57,3 +81,4 @@ def homepage(request):
         "genres": Genre.objects.all(),
     }
     return render(request, 'homepage.html', context)
+  

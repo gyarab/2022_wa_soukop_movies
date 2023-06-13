@@ -10,9 +10,14 @@
         GA Movie DB
         {% endblock title %}
     </title>
+    <style>
+      .navbar-custom1  {
+        background-color: #DC3545;
+      }
+    </style>
 </head>
-<body>
-    <nav class="navbar navbar-expand-sm bg-body-tertiary">
+<body style="background-color: #404040; color: whitesmoke;">
+    <nav class="navbar navbar-dark navbar-expand-sm navbar-custom1">
         <div class="container-fluid">
           <a class="navbar-brand" href="{% url 'homepage' %}">GA Movie DB</a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
