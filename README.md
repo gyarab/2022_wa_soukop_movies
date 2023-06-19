@@ -2,7 +2,7 @@
 ## *chce se mi umřít*
 
 + python -m venv venv
-+ venv/scripts/activate.ps1
++ venv/Scripts/activate
 + pip install -r requirements.txt
 + py manage.py makemigrations
 + py manage.py migrate
