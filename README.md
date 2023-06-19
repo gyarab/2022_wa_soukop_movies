@@ -1,5 +1,5 @@
 # **2022_wa_soukop_movies**
-## * *chce se mi umřít* *
+## * chce se mi umřít *
 
 + python -m venv venv
 + venv/scripts/activate.ps1
