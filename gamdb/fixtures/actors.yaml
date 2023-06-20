@@ -1,4 +1,4 @@
-- model: actors.actor
+- model: actors.actors
   pk: 1
   fields:
     name: Ewan McGregor
