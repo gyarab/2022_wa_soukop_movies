@@ -4,6 +4,9 @@
     name: The Shawshank Redemption  
     year: 1994
     description: aaa
+    image_url: https://m.media-amazon.com/images/M/MV5BNDE3ODcxYzMtY2YzZC00NmNlLWJiNDMtZDViZWM2MzIxZDYwXkEyXkFqcGdeQXVyNjAwNDUxODI@._V1_FMjpg_UX1000_.jpg
+    avg_rating: 9.3
+    genres: Thriller
 - model: films.movie
   pk: 2
   fields:
