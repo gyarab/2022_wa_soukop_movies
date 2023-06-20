@@ -1,0 +1,7 @@
+- model: actors.actor
+  pk: 1
+  fields:
+    name: Ewan McGregor
+    photo_url: https://i.pinimg.com/originals/14/12/6a/14126a67f9fe347d510f10858b3eb5f0.jpg
+    birth_year: 1971
+    description: space jesus
