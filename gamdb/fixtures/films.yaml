@@ -8,18 +8,21 @@
     avg_rating: 9.3
     genres:
       - 1
+      
 - model: films.movie
   pk: 2
   fields:
     name: Taxi Driver
     year: 1976
     description:  bbb
+    
 - model: films.movie
   pk: 3
   fields:
     name: Inglourious Basterds
     year: 2009
     description:  ccc
+    
 - model: films.movie
   pk: 4
   fields:
@@ -36,6 +39,6 @@
       description: space jesus
 
 - model: films.genre
-  pk: 1
-  fields:
-    name: Thriller
+    pk: 1
+    fields:
+      name: Thriller
